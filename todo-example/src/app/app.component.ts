@@ -1,0 +1,21 @@
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+interface IPerson { name: string; }
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+
+export class AppComponent {
+  public people: IPerson[];
+  
+  constructor(private httpClient: HttpClient) { 
+    this.loadPeople;
+  }
+
+  async loadPeople(){
+    this.people = await this.httpClient.get<IPerson[]>('http://localhost:8080/api/people').toPromise();
+  }
+}
