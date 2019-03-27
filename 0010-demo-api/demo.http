@@ -13,7 +13,7 @@ POST {{host}}/todos
 Content-Type: application/json
 
 {
-  "description": "Shopping",
+  "description": "Clean up",
   "assignedTo": "Eve"
 }
 
@@ -54,7 +54,7 @@ GET {{host}}/todos
 
 ###
 // Update todo item
-PATCH {{host}}/todos/0
+PATCH {{host}}/todos/3
 Content-Type: application/json
 
 {
