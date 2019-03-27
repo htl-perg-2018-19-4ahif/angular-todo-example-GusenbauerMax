@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Edit todo</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput placeholder="Description" [(ngModel)]="editDescription">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-select placeholder="assigned to" >
+            <mat-option value=""></mat-option>
+            <mat-option *ngFor="let person of people;" value={{person.name}}>{{ person.name }}</mat-option>
+        </mat-select>
+    </mat-form-field> 
+    <br/>
+    <mat-checkbox></mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

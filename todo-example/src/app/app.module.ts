@@ -9,12 +9,14 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
-import { AppComponent } from './app.component';
+import { AppComponent, EditDialog } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditDialog
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,11 @@ import { AppComponent } from './app.component';
     MatInputModule,
     FormsModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    EditDialog
   ],
   providers: [],
   bootstrap: [AppComponent]

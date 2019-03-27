@@ -31,7 +31,7 @@
       {{ todo.assignedTo }}
       <mat-action-row>
         <button mat-button (click)="deleteToDo(todo.id)">Delete</button>
-        <button mat-button >Edit</button>
+        <button mat-button (click)="openDialog()">Edit</button>
       </mat-action-row>
     </mat-expansion-panel>
 

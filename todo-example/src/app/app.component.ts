@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { OnInit } from '@angular/core';
-import {NgModule} from '@angular/core';
+import { Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 interface IPerson { name: String };
 interface IToDo { id: number, description: String, assignedTo: String, done: boolean};
+
+export interface DialogData {
+  editDescription: string;
+  editPerson: string;
+  editDone: boolean;
+  people: IPerson[];
+}
 
 @Component({
   selector: 'app-root',
@@ -18,8 +25,11 @@ export class AppComponent {
   public newDescription: String;
   public newPersonName: String;
   public personName: String = "";
+  public editDescription: String = "";
+  public editPerson: String = "";
+  public editDone: String = "";
   
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient, public dialog: MatDialog) { 
     
   }
 
@@ -73,4 +83,31 @@ export class AppComponent {
   printTodos(){
     console.log(this.todos);
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(EditDialog, {
+      data: {editDescription: this.editDescription, editPerson: this.editPerson, editDone: this.editDone, people: this.people}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+}
+
+@Component({
+  selector: 'editDialog',
+  templateUrl: 'editDialog.html',
+})
+export class EditDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<EditDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
